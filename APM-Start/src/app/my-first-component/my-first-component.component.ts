@@ -4,7 +4,9 @@ import {Component, OnInit} from '@angular/core';
   selector: 'pm-my-first-component',
   // NOTE: template for hard-coded template and templateUrl for file
   // templateUrl: './my-first-component.component.html',
-  template: `<h3>{{helloWorld}}</h3>`,
+  template: `<h3>{{helloWorld}}</h3>
+<!--    <pm-welcome></pm-welcome>-->
+  `,
   styleUrls: ['./my-first-component.component.css']
 })
 export class MyFirstComponentComponent implements OnInit {
