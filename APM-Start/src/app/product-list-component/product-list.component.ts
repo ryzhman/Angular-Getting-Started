@@ -6,4 +6,6 @@ import {Component} from '@angular/core';
 })
 export class ProductListComponent {
   pageTitle: string = 'Product List';
+  // alternatively, method can be used
+  // getTitle = () => this.pageTitle;
 }
