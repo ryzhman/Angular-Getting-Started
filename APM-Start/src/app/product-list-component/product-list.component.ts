@@ -13,6 +13,7 @@ export class ProductListComponent {
   imageMargin: number = 2;
   products: object[] = productsJson;
   showImage: boolean = false;
+  filterBy: string = 'Enter your value here';
 
   toggleImage(): void {
     this.showImage = !this.showImage;
