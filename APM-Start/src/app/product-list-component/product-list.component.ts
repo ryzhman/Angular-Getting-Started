@@ -12,5 +12,9 @@ export class ProductListComponent {
   imageWidth: number = 50;
   imageMargin: number = 2;
   products: object[] = productsJson;
+  showImage: boolean = false;
 
+  toggleImage(): void {
+    this.showImage = !this.showImage;
+  }
 }
