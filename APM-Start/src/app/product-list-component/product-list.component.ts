@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {ProductService} from '../../services/ProductService';
+import {Product} from "../../models/Product";
 
 @Component({
   selector: 'pm-products',
@@ -15,7 +16,7 @@ export class ProductListComponent {
   showImage: boolean = false;
   filterBy: string = 'Enter your value here';
   productService: ProductService;
-  products: object[];
+  products: Product[];
 
   constructor() {
     this.productService = new ProductService();
