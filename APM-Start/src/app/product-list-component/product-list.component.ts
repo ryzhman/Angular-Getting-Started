@@ -15,13 +15,34 @@ export class ProductListComponent implements OnInit {
   imageWidth: number = 50;
   imageMargin: number = 2;
   showImage: boolean = false;
-  filterBy: string = 'Enter your value here';
   productService: ProductService;
-  products: Product[];
+  _products: Product[];
+  filteredProducts: Product[];
+  _filterBy: string;
+
+  // getter is invoked when the this.filterBy = 10 is used
+  get filterBy(): string {
+    return this._filterBy;
+  }
+
+  // every time the filter is changed, the filter is performed
+  set filterBy(value: string) {
+    this._filterBy = value;
+    this.filteredProducts = value ? this.performFilter(value) : this._products;
+  }
+
+  performFilter(filterBy: string): Product[] {
+    return this._products.filter((item: Product) => item.productName.toLocaleLowerCase().indexOf(filterBy) !== -1);
+  }
 
   ngOnInit(): void {
     this.productService = new ProductService();
-    this.products = this.productService.getProducts();
+    this._products = this.productService.getProducts();
+  }
+
+  constructor() {
+    this._filterBy = 'cart';
+    this.filteredProducts = this._products;
   }
 
   toggleImage(): void {

@@ -20,7 +20,7 @@
   </div>
 
   <div class="table-responsive">
-    <table class="table" *ngIf="products && products.length">
+    <table class="table" *ngIf="_products && _products.length">
       <thead>
       <tr>
         <th>
@@ -34,7 +34,7 @@
       </thead>
 
       <tbody>
-      <tr *ngFor="let product of products">
+      <tr *ngFor="let product of filteredProducts">
         <td><img *ngIf="showImage" [src]='product.imageUrl' [title]='product.productName'
                  [style.width.px]='imageWidth'
                  [style.margin.px]='imageMargin'>
@@ -47,7 +47,7 @@
       </tbody>
     </table>
 
-    <div *ngIf="!products || !products.length">
+    <div *ngIf="!_products || !_products.length">
       <h3>No items found</h3>
     </div>
   </div>
