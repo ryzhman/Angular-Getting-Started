@@ -36,13 +36,13 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.productService = new ProductService();
-    this._products = this.productService.getProducts();
   }
 
   constructor() {
     this._filterBy = 'cart';
-    this.filteredProducts = this._products;
+    this.productService = new ProductService();
+    this._products = this.productService.getProducts();
+    this.filteredProducts = this.performFilter(this._filterBy);
   }
 
   toggleImage(): void {
