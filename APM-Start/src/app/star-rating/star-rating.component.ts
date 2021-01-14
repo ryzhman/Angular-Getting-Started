@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges} from '@angular/core';
+import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 
 @Component({
   selector: 'pm-star-rating',
@@ -10,7 +10,15 @@ export class StarRatingComponent implements OnChanges {
   rating: number;
   starWidth: number;
 
-  ngOnChanges(): void {
-    this.starWidth = this.rating * 75 / 5;
+  ngOnChanges(changes: SimpleChanges): void {
+    for (const propName in changes) {
+      if (changes.hasOwnProperty(propName)) {
+        switch (propName) {
+          case 'rating': {
+            this.starWidth = this.rating * 75 / 5;
+          }
+        }
+      }
+    }
   }
 }
