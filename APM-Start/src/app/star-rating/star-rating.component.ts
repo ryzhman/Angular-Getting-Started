@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
 
 @Component({
   selector: 'pm-star-rating',
@@ -6,12 +6,13 @@ import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
   styleUrls: ['./star-rating.component.css']
 })
 export class StarRatingComponent implements OnChanges {
-  @Input()
-  rating: number;
+  @Input() rating: number;
   starWidth: number;
+  @Output() ratingClicked: EventEmitter<string> = new EventEmitter<string>();
 
   ngOnChanges(changes: SimpleChanges): void {
     for (const propName in changes) {
+      // there might be multiple @Input so we can distinguish them
       if (changes.hasOwnProperty(propName)) {
         switch (propName) {
           case 'rating': {
@@ -20,5 +21,10 @@ export class StarRatingComponent implements OnChanges {
         }
       }
     }
+  }
+
+  onClick(): void {
+    // event is submitted
+    this.ratingClicked.emit('' + this.rating);
   }
 }

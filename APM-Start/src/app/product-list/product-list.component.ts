@@ -48,4 +48,9 @@ export class ProductListComponent implements OnInit {
   toggleImage(): void {
     this.showImage = !this.showImage;
   }
+
+  onRatingClicked(message: string): void {
+    console.log('Event was thrown: ' + message);
+    this.pageTitle = `${this.pageTitle} ${message}`;
+  }
 }
