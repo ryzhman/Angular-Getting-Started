@@ -1,11 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {ProductService} from '../../services/ProductService';
+import {ProductService} from '../../services/product.service';
 import {Product} from '../../models/Product';
 
 @Component({
   selector: 'pm-products',
   templateUrl: './product-list.component.html',
-  styleUrls: ['product-list.component.css']
+  styleUrls: ['product-list.component.css'],
+  providers: [ProductService]
 })
 export class ProductListComponent implements OnInit {
   pageTitle: string = 'Product List';
@@ -15,7 +16,7 @@ export class ProductListComponent implements OnInit {
   imageWidth: number = 50;
   imageMargin: number = 2;
   showImage: boolean = false;
-  productService: ProductService;
+  // productService: ProductService;
   _products: Product[];
   filteredProducts: Product[];
   _filterBy: string;
@@ -36,13 +37,15 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  }
-
-  constructor() {
-    this._filterBy = 'cart';
-    this.productService = new ProductService();
     this._products = this.productService.getProducts();
     this.filteredProducts = this.performFilter(this._filterBy);
+  }
+
+  // constructor is called before onInit
+  // you can ignore the service declaration just by using access modified - it is declaration and assignment at once
+  constructor(private productService: ProductService) {
+    // this._filterBy = 'cart';
+    this.productService = productService;
   }
 
   toggleImage(): void {
