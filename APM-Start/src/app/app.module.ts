@@ -8,6 +8,7 @@ import {ProductListComponent} from './product-list/product-list.component';
 import {FormsModule} from '@angular/forms';
 import {ConvertToSpacePipe} from '../pipes/ConvertToSpacePipe';
 import {StarRatingComponent} from './star-rating/star-rating.component';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   // all the custom components should be included here
@@ -19,10 +20,11 @@ import {StarRatingComponent} from './star-rating/star-rating.component';
     ConvertToSpacePipe,
     StarRatingComponent
   ],
-  // out of box components
+  // out of box/external components
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   // Only parent component must be added here
   bootstrap: [AppComponent]

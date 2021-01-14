@@ -20,6 +20,7 @@ export class ProductListComponent implements OnInit {
   _products: Product[];
   filteredProducts: Product[];
   _filterBy: string;
+  private errorMessage: string;
 
   // getter is invoked when the this.filterBy = 10 is used
   get filterBy(): string {
@@ -32,13 +33,36 @@ export class ProductListComponent implements OnInit {
     this.filteredProducts = value ? this.performFilter(value) : this._products;
   }
 
-  performFilter(filterBy: string): Product[] {
+  performFilter(filterBy: string = ''): Product[] {
+    if (!this._products) {
+      return new Array<Product>();
+    }
     return this._products.filter((item: Product) => item.productName.toLocaleLowerCase().indexOf(filterBy) !== -1);
   }
 
   ngOnInit(): void {
-    this._products = this.productService.getProducts();
-    this.filteredProducts = this.performFilter(this._filterBy);
+    // subscribe() to three types of events: next, error, complete. All of them can be functions
+    // this._products = this.productService.getProducts().subscribe(
+    //   value => console.log(value),
+    //   error => console.error(error),
+    //   () => console.log('completeEvent'));
+    this.productService.getProducts().subscribe({
+      next: products => {
+        this._products = products;
+        this.filteredProducts = this.performFilter(this._filterBy);
+      },
+      error: err => this.errorMessage = err
+    });
+    // alternative declaration
+    // this.productService.getProducts().subscribe({
+    //   next(products): void {
+    //     this._products = products; --> this scopes to the function itself (!). Use only when don't use class level vars
+    //     this.filteredProducts = this.performFilter(this._filterBy);
+    //   },
+    //   error(err): void {
+    //     this.errorMessage = err;
+    //   }
+    // });
   }
 
   // constructor is called before onInit
