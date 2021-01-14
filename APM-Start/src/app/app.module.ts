@@ -3,10 +3,11 @@ import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {MyFirstComponentComponent} from './my-first-component/my-first-component.component';
-import {WelcomeComponent} from "./home/welcome.component";
-import {ProductListComponent} from './product-list-component/product-list.component';
-import {FormsModule} from "@angular/forms";
-import {ConvertToSpacePipe} from "../pipes/ConvertToSpacePipe";
+import {WelcomeComponent} from './home/welcome.component';
+import {ProductListComponent} from './product-list/product-list.component';
+import {FormsModule} from '@angular/forms';
+import {ConvertToSpacePipe} from '../pipes/ConvertToSpacePipe';
+import {StarRatingComponent} from './star-rating/star-rating.component';
 
 @NgModule({
   // all the custom components should be included here
@@ -15,7 +16,8 @@ import {ConvertToSpacePipe} from "../pipes/ConvertToSpacePipe";
     MyFirstComponentComponent,
     WelcomeComponent,
     ProductListComponent,
-    ConvertToSpacePipe
+    ConvertToSpacePipe,
+    StarRatingComponent
   ],
   // out of box components
   imports: [

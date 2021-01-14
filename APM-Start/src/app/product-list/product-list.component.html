@@ -28,6 +28,7 @@
         </th>
         <th>Product</th>
         <th>Code</th>
+        <th>Release Date</th>
         <th>Price</th>
         <th>5 Start Rating</th>
       </tr>
@@ -43,7 +44,7 @@
         <td>{{product.productCode | lowercase | convertToSpaces: '-'}}</td>
         <td>{{product.releaseDate}}</td>
         <td>{{product.price | currency: 'CAD' : 'symbol': '1.2-2'}}</td>
-        <td>{{product.starRating}}</td>
+        <td><pm-star-rating [rating]=product.starRating></pm-star-rating></td>
       </tr>
       </tbody>
     </table>
