@@ -9,6 +9,8 @@ import {FormsModule} from '@angular/forms';
 import {ConvertToSpacePipe} from '../pipes/ConvertToSpacePipe';
 import {StarRatingComponent} from './star-rating/star-rating.component';
 import {HttpClientModule} from '@angular/common/http';
+import {ProductDetailsComponent} from './product-details/product-details.component';
+import {RouterModule} from "@angular/router";
 
 @NgModule({
   // all the custom components should be included here
@@ -18,13 +20,23 @@ import {HttpClientModule} from '@angular/common/http';
     WelcomeComponent,
     ProductListComponent,
     ConvertToSpacePipe,
-    StarRatingComponent
+    StarRatingComponent,
+    ProductDetailsComponent
   ],
   // out of box/external components
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    // # used instead of URL path
+    // RouterModule.forRoot([], {useHash:true})
+    RouterModule.forRoot([
+      {path: 'products', component: ProductListComponent},
+      {path: 'products/:id', component: ProductDetailsComponent},
+      {path: 'welcome', component: WelcomeComponent},
+      {path: '', redirectTo: 'welcome', pathMatch: 'full'},
+      {path: '**', redirectTo: 'welcome', pathMatch: 'full'}
+    ])
   ],
   // Only parent component must be added here
   bootstrap: [AppComponent]
