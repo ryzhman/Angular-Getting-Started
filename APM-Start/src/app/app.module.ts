@@ -11,6 +11,7 @@ import {StarRatingComponent} from './star-rating/star-rating.component';
 import {HttpClientModule} from '@angular/common/http';
 import {ProductDetailsComponent} from './product-details/product-details.component';
 import {RouterModule} from "@angular/router";
+import {ProductDetailGuard} from "../guards/product-detail.guard";
 
 @NgModule({
   // all the custom components should be included here
@@ -32,7 +33,7 @@ import {RouterModule} from "@angular/router";
     // RouterModule.forRoot([], {useHash:true})
     RouterModule.forRoot([
       {path: 'products', component: ProductListComponent},
-      {path: 'products/:id', component: ProductDetailsComponent},
+      {path: 'products/:id', component: ProductDetailsComponent, canActivate: [ProductDetailGuard]},
       {path: 'welcome', component: WelcomeComponent},
       {path: '', redirectTo: 'welcome', pathMatch: 'full'},
       {path: '**', redirectTo: 'welcome', pathMatch: 'full'}
