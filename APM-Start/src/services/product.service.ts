@@ -38,7 +38,7 @@ export class ProductService {
     return throwError(`Couldn't get the list of products`);
   }
 
-  getById(id: number): Observable<Product> {
+  getById(id: number): Observable<Product | undefined> {
     if (!id) {
       throwError(`Couldn't find the product with id: ${id}`);
     }
