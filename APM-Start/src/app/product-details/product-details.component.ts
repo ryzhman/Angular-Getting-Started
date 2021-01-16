@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Product} from '../../models/Product';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {ProductService} from "../../services/product.service";
 
 @Component({
@@ -14,7 +14,7 @@ export class ProductDetailsComponent implements OnInit {
   _product: Product;
   private pageTitle = 'Product item';
 
-  constructor(private route: ActivatedRoute, private productService: ProductService) {
+  constructor(private route: ActivatedRoute, private productService: ProductService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -22,6 +22,10 @@ export class ProductDetailsComponent implements OnInit {
     this.productService.getById(id).subscribe({
       next: item => this._product = item
     });
+  }
+
+  onBack(): void {
+    this.router.navigate(['/products']);
   }
 
   set product(newProduct: Product) {

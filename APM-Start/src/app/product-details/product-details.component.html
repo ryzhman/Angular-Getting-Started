@@ -1,7 +1,12 @@
 <div clas="card" *ngIf="_product">
   <div class="card-header">
-<!--    save navigation declaration product?.productName If the product is endefined, expression is null-->
+    <!--    save navigation declaration product?.productName If the product is endefined, expression is null-->
     {{pageTitle + ': ' + product.productName + ':' + product.productId}}
+  </div>
+  <div class="card-header">
+    <button class="btn btn-outline-secondary" (click)="onBack()" style="width: 80px;">
+      <i class="fa fa-chevron-left"></i> Back
+    </button>
   </div>
 </div>
 
